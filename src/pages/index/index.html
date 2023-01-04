@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+  <title>title</title>
+  <script>
+    !(function (doc, win) {
+      var docEl = doc.documentElement;
+      var resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+      var recalc = function () {
+        var clientWidth = docEl.clientWidth;
+        var MAX_WIDTH = 750; // 设计稿宽度为750px，html设置字体大小100px，设计稿上30px相当于页面上0.3rem；
+        if (!clientWidth) {
+          return;
+        }
+        if (clientWidth >= MAX_WIDTH) {
+          docEl.style.fontSize = '100px';
+        } else {
+          docEl.style.fontSize = 100 * (clientWidth / MAX_WIDTH) + 'px';
+        }
+      };
+      recalc();
+      if (!doc.addEventListener) {
+        return;
+      }
+      win.addEventListener(resizeEvt, recalc, false);
+      doc.addEventListener('DOMContentLoaded', recalc, false);
+    })(document, window);
+  </script>
+</head>
+
+<body style="font-size:16px">
+  <noscript>
+    <strong>We're sorry but mass doesn't work properly without JavaScript enabled. Please enable it to
+      continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <script type="module" src="./main.ts"></script>
+</body>
+
+</html>
