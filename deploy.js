@@ -16,8 +16,8 @@ const readDir = (path) => {
 
 let client = new OSS({
   region: "oss-cn-hongkong",
-  accessKeyId: process.env.accessKeyId,
-  accessKeySecret: process.env.accessKeySecret,
+  accessKeyId: process.env.ACCESSKEYID,
+  accessKeySecret: process.env.ACCESSKEYSECRET,
 });
 
 client.useBucket("jyb-site");
