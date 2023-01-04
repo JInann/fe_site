@@ -1,7 +1,7 @@
 <template>
   <img alt="Vue logo" src="./assets/logo.png" />
   <HelloWorld msg="Hello Vue 3 + TypeScript + Vite" />
-  <div>查看 <i>.env.local</i> 文件，配置入口，并<strong>重启服务1</strong></div>
+  <div>新版本</div>
 </template>
 
 <script setup lang="ts">
