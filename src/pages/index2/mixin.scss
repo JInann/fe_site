@@ -1,0 +1,44 @@
+@mixin imgBg($url,$width,$height) {
+  background-image:url($url);
+  background-repeat: no-repeat;
+  background-position: left top;
+  background-size: $width $height;
+  width:$width;
+  height:$height;
+}
+@mixin flexCenter() {
+  display:flex; 
+  justify-content: center;
+  align-items:center;
+}
+@mixin font($size,$color,$weight:normal) {
+  font-size: $size;
+  color: $color;
+  font-weight: $weight;
+}
+@function top($top){
+  @return "calc(var(--top,0) + 0.3rem + "+$top+")";
+}
+@mixin fontBorder($size:0.02rem,$color:#000,$blur:0.0rem) {
+  text-shadow: $size 0 $blur $color,
+  calc(#{$size} * -1) 0 $blur $color,
+  0 calc(#{$size} * -1)  $blur $color,
+  0 $size $blur $color,0 0 $size $color,
+  $size $size $blur $color,0 0 $size $color,
+  calc(#{$size} * -1) calc(#{$size} * -1) $blur $color,0 0 $size $color,
+  calc(#{$size} * -1) $size $blur $color,0 0 $size $color,
+  $size calc(#{$size} * -1) $blur $color,0 0 $size $color,;
+}
+.n::after {
+  content: "数";
+  display: inline-block;
+  width: 0;
+  opacity: 0;
+}
+@mixin textHide($max_width) {
+  max-width: $max_width;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: keep-all;
+  white-space: nowrap;
+}
