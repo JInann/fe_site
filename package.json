@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "vite --host",
     "lint": "vue-tsc --noEmit",
-    "pre": "vite build --mode pre",
-    "build": "vite build",
+    "pre": "node build pre",
+    "build": "node build",
     "preview": "vite preview --host",
     "deploy": "node deploy.js",
     "push": "git push && npm run deploy"
