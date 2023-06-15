@@ -4,6 +4,7 @@ import { resolve } from "path";
 import legacy from "@vitejs/plugin-legacy";
 import { readdirSync, statSync } from "fs";
 import { createPromptModule } from "inquirer";
+import { execSync } from "child_process";
 // https://vitejs.dev/config/
 
 function getPagesOrderByMtime() {
@@ -32,6 +33,11 @@ function getPagesOrderByMtime() {
   });
   return res.map((v) => v.name);
 }
+function getChangePageName() {
+  const raw = execSync("git diff --name-only HEAD~1").toString();
+  const page = /src\/pages\/(.+?)\//.exec(raw);
+  return page[1];
+}
 
 export default defineConfig(async ({ mode }) => {
   // // 入口获取逻辑
@@ -44,20 +50,25 @@ export default defineConfig(async ({ mode }) => {
   // 加载环境变量,只有`VITE_`开头的变量可以访问到
   let { VITE_ENTRY } = loadEnv(mode, ".");
   if (!VITE_ENTRY) {
-    const prompt = createPromptModule();
-    const { entry } = await prompt([
-      {
-        type: "list",
-        name: "entry",
-        message: "请选择要运行的页面：",
-        choices: getPagesOrderByMtime(),
-        // when(answer) {
-        //   return !answer.confirm_page;
-        // },
-      },
-    ]);
-    VITE_ENTRY = entry;
+    if (mode == "development") {
+      const prompt = createPromptModule();
+      const { entry } = await prompt([
+        {
+          type: "list",
+          name: "entry",
+          message: "请选择要运行的页面：",
+          choices: getPagesOrderByMtime(),
+          // when(answer) {
+          //   return !answer.confirm_page;
+          // },
+        },
+      ]);
+      VITE_ENTRY = entry;
+    } else {
+      VITE_ENTRY = getChangePageName();
+    }
   }
+  console.log("打包/运行的页面为:", VITE_ENTRY);
   return {
     // 根据入口文件改变根目录
     root: resolve(__dirname, "src/pages/" + VITE_ENTRY + "/"),
@@ -68,6 +79,7 @@ export default defineConfig(async ({ mode }) => {
       open: "/index.html",
     },
     assetsInclude: ["**/*.svga"],
+    envDir: resolve(__dirname),
     plugins: [
       vue(),
       // 兼容插件

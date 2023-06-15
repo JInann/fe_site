@@ -16,5 +16,6 @@ module.exports = {
     // 'vue/no-unused-vars': 'error'
     "vue/no-v-html": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "vue/multi-word-component-names": "off",
   },
 };
