@@ -10,6 +10,7 @@ specifiers:
   axios: ^0.26.1
   cross-env: ^7.0.3
   dayjs: ^1.11.0
+  echarts: ^5.4.3
   eslint: ^8.10.0
   eslint-config-prettier: ^8.5.0
   eslint-plugin-prettier: ^4.0.0
@@ -31,6 +32,7 @@ specifiers:
 dependencies:
   axios: 0.26.1
   dayjs: 1.11.8
+  echarts: 5.4.3
   jszip: 3.10.1
   pinia: 2.1.4_typescript@4.9.5+vue@3.3.4
   swiper: 5.4.5
@@ -899,6 +901,13 @@ packages:
     resolution: {integrity: sha1-p5QRAXgAsx2EAAcM2uu/ySwfY3c=}
     dependencies:
       ssr-window: 2.0.0
+    dev: false
+
+  /echarts/5.4.3:
+    resolution: {integrity: sha512-mYKxLxhzy6zyTi/FaEbJMOZU1ULGEQHaeIeuMR5L+JnJTpz+YR03mnnpBhbR4+UYJAgiXgpyTVLffPAjOTLkZA==}
+    dependencies:
+      tslib: 2.3.0
+      zrender: 5.4.4
     dev: false
 
   /ee-first/1.1.1:
@@ -2681,6 +2690,10 @@ packages:
     resolution: {integrity: sha1-zy04vcNKE0vK8QkcQfZhni9nLQA=}
     dev: true
 
+  /tslib/2.3.0:
+    resolution: {integrity: sha1-gDuM2rPhK6WBpMpByIObuw2ssJ4=}
+    dev: false
+
   /tslib/2.5.3:
     resolution: {integrity: sha512-mSxlJJwl3BMEQCUNnxXBU9jP4JBktcEGhURcPR6VQVlnP0FdDEsIaz0C35dXNGLyRfrATNofF0F5p2KPxQgB+w==}
     dev: true
@@ -2970,3 +2983,9 @@ packages:
     resolution: {integrity: sha1-ApTrPe4FAo0x7hpfosVWpqrxChs=}
     engines: {node: '>=10'}
     dev: true
+
+  /zrender/5.4.4:
+    resolution: {integrity: sha512-0VxCNJ7AGOMCWeHVyTrGzUgrK4asT4ml9PEkeGirAkKNYXYzoPJCLvmyfdoOXcjTHPs10OZVMfD1Rwg16AZyYw==}
+    dependencies:
+      tslib: 2.3.0
+    dev: false
