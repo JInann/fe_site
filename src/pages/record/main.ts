@@ -4,7 +4,12 @@ import store from "./store";
 import { createRouter, createWebHashHistory } from "vue-router";
 const router = createRouter({
   history: createWebHashHistory(),
-  routes: [{ path: "/", component: () => import("./index.vue") }],
+  routes: [
+    { path: "/", component: () => import("./login.vue") },
+    { path: "/login", component: () => import("./login.vue") },
+    { path: "/token/:token", component: () => import("./token.vue") },
+    { path: "/user/:id", component: () => import("./user.vue") },
+  ],
 });
 
 // Vue.config.productionTip = false;
