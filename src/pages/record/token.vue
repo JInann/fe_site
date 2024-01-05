@@ -8,14 +8,15 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { getQueryString } from "./common";
-import { useRoute } from "vue-router";
+import { useRoute, useRouter } from "vue-router";
 const route = useRoute();
+const router = useRouter();
 const token = ref(
   getQueryString("token") || (route.query.token as string) || ""
 );
 if (token.value) {
   sessionStorage.setItem("token", token.value);
-  location.replace(location.origin + "/#/user");
+  router.replace("/user");
 }
 </script>
 
