@@ -1,6 +1,5 @@
 <template>
   <div class="record">
-    <!-- <h1>余额</h1> -->
     <div class="yue">{{ token }}</div>
   </div>
 </template>
