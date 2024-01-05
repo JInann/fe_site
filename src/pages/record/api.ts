@@ -8,5 +8,7 @@ export default {
   github_login:
     userHost +
     "/github/login?state=" +
-    encodeURIComponent(location.origin + "?page=token&token="),
+    encodeURIComponent(
+      location.origin + location.pathname + "?page=token&token="
+    ),
 };
