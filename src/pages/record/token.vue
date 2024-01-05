@@ -1,6 +1,6 @@
 <template>
   <div class="record">
-    <div class="yue">{{ token }}</div>
+    <!-- <div class="yue">{{ token }}</div> -->
   </div>
 </template>
 
