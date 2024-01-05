@@ -6,11 +6,17 @@
 </template>
 
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
-import { api, GET } from "./common";
+import { ref } from "vue";
+import { getQueryString } from "./common";
 import { useRoute } from "vue-router";
 const route = useRoute();
-const token = ref(route.params.token);
+const token = ref(
+  getQueryString("token") || (route.query.token as string) || ""
+);
+if (token.value) {
+  sessionStorage.setItem("token", token.value);
+  location.replace(location.origin + "/#/user");
+}
 </script>
 
 <style lang="scss" scoped>

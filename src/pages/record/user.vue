@@ -1,71 +1,29 @@
 <template>
-  <div class="record">
-    <!-- <h1>余额</h1> -->
-    <div class="yue"></div>
+  <div class="user">
+    <el-descriptions title="userinfo" direction="vertical" :column="1" border>
+      <el-descriptions-item v-for="(v, k) in UInfo" :key="k" :label="k">{{
+        v
+      }}</el-descriptions-item>
+    </el-descriptions>
   </div>
 </template>
 
 <script lang="ts" setup>
-import * as echarts from "echarts";
-import { onMounted } from "vue";
-import { api, GET } from "./common";
-onMounted(() => {
-  const myChart = echarts.init(
-    document.querySelector(".yue") as HTMLDivElement
-  );
-  const option = {
-    xAxis: {
-      type: "category",
-      data: [] as string[],
-      name: "日期",
-    },
-    yAxis: [
-      {
-        type: "value",
-        name: "余额(w)",
-      },
-      {
-        type: "value",
-        name: "新增(w)",
-      },
-    ],
-    series: [
-      {
-        data: [] as number[],
-        type: "bar",
-      },
-      {
-        data: [] as number[],
-        type: "line",
-        yAxisIndex: 1,
-      },
-    ],
-    tooltip: {
-      show: true,
-      trigger: "axis",
-      formatter: "余额: {c0}<br />新增: {c1}",
-    },
-  };
-  GET(api.record + location.search).then((res) => {
-    let data: any[] = res;
-    data.forEach((item, i) => {
-      option.xAxis.data.push(item.dt);
-      option.series[0].data.push(item.value);
-      if (i > 0) {
-        option.series[1].data.push(item.value - data[i - 1].value);
-      }
-    });
-    myChart.setOption(option);
-  });
+import { ref } from "vue";
+import { api, POST } from "./common";
+let UInfo = ref({});
+POST(api.userinfo).then((res) => {
+  UInfo.value = res;
 });
 </script>
 
 <style lang="scss" scoped>
 @import "./mixin.scss";
-.record {
+.user {
   height: 100vh;
-}
-.yue {
-  height: 100vh;
+  @include flexCenter();
+  .el-descriptions {
+    width: 100%;
+  }
 }
 </style>

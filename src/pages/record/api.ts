@@ -5,5 +5,8 @@ export default {
   login: userHost + "/login",
   register: userHost + "/register",
   userinfo: userHost + "/userinfo",
-  github_login: userHost + "/github/login",
+  github_login:
+    userHost +
+    "/github/login?state=" +
+    encodeURIComponent(location.origin + "?page=token&token="),
 };
